@@ -10,9 +10,7 @@ from .config import settings
 # resources
 # SQLALCHEMY_DATABASE_URL = "postgresql://<username>:<password>@<ip_address/host_name>/<database_name>")
 
-SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.database_username}:{settings.
-database_password}@{settings.database_hostname}:{settings.database_port}/{settings.
-database_name}"
+SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL) # establishing connection
 SessionLocal = sessionmaker(autocommit = False, autoflush= False, bind = engine) # talk to sql database # autoflush automatically push the pending changes before commiting

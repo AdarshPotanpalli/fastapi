@@ -25,7 +25,7 @@ app.add_middleware(
 # # path operation or route
 @app.get("/") #decorator using HTTP get method
 async def root():  # async keyword performs the tasks asynchrnously (optional)
-    return {"message": "Hi this is Adarsh, cool"} # python dictionary which is converted to json for handling api calls
+    return {"message": "Hi this is Adarsh, cool, changed"} # python dictionary which is converted to json for handling api calls
 
 
 app.include_router(posts.router)
