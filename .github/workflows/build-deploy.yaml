@@ -21,8 +21,8 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: 240701
-          POSTGRES_DB: fastapi_test
+          POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+          POSTGRES_DB: ${{secrets.DATABASE_NAME}}_test
         ports:
           - 5432:5432
         options: >-
@@ -46,4 +46,5 @@ jobs:
       - name: run tests with pytest
         run: |
           pip install pytest
+          echo "Using DB URL: postgresql://${{ secrets.DATABASE_USERNAME }}:${{ secrets.DATABASE_PASSWORD }}@${{ secrets.DATABASE_HOSTNAME }}:${{ secrets.DATABASE_PORT }}/${{ secrets.DATABASE_NAME }}_test"
           pytest
