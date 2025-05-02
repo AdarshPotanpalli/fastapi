@@ -6,7 +6,7 @@ from .config import settings
 from fastapi.middleware.cors import CORSMiddleware
 
 # # we are using alembic to autogenerate the tables from the models defined, so we dont really need this command anymore
-# models.Base.metadata.create_all(engine) # create all the tables defined in models if they dont exist yet
+models.Base.metadata.create_all(engine) # create all the tables defined in models if they dont exist yet
 
 app = FastAPI()
 
@@ -25,7 +25,7 @@ app.add_middleware(
 # # path operation or route
 @app.get("/") #decorator using HTTP get method
 async def root():  # async keyword performs the tasks asynchrnously (optional)
-    return {"message": "Hi this is Adarsh, cool, changed"} # python dictionary which is converted to json for handling api calls
+    return {"message": "Hi this is Adarsh, cool, changed woaa"} # python dictionary which is converted to json for handling api calls
 
 
 app.include_router(posts.router)

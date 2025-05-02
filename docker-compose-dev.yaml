@@ -1,0 +1,31 @@
+version: "3"
+services:
+  api:
+    build: .
+    depends_on:
+      - postgres # so the database service will run first
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/usr/src/app:ro
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    # env_file:
+    #   - ./.env
+    environment:
+      - DATABASE_NAME=fastapi
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=240701
+      - DATABASE_HOSTNAME=postgres # IP of database host inside docker network
+      - DATABASE_PORT=5432
+      - SECRET_KEY=9b2d5b93ee5bc41958aab7ebfe363f987a288a2a35a62d922cef550c491bdd9d
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30  
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=240701
+      - POSTGRES_DB=fastapi
+    volumes:
+      - postgres-db:/var/lib/postgresql/data # named volume format in postgres
+volumes:
+  postgres-db:
